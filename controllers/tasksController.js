@@ -56,10 +56,10 @@ const updateTask=async (req,res)=>{
     }
 
 }
-const deleteTask=(req,res)=>{
+const deleteTask=async (req,res)=>{
     try{
     const {id:taskID}=req.params;
-    const task=Task.findOneAndDelete({_id:taskID});
+    const task=await Task.findOneAndDelete({_id:taskID});
     if(!task){
         return res.status(404).json({msg:`No task with id: ${taskID}`})
         }
